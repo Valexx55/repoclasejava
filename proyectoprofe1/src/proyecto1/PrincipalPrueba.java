@@ -11,6 +11,10 @@ public class PrincipalPrueba {
 		String nombre = "Vale";*/
 		
 		String nombre = new String("MANU");
+		String nombre1 = new String("MANU5");
+		System.out.println("La longuitud de nombre es " + nombre.length());
+		System.out.println("La longuitud de nombre es " + nombre1.length());
+		
 		System.out.println(nombre);
 		
 		Dni dni = new Dni();//creo un objeto Dni, llmando al constructor de la clase
@@ -21,6 +25,10 @@ public class PrincipalPrueba {
 		System.out.println(stringDni2);
 		System.out.println(stringDni3);
 		System.out.println("Fin de programa");
+		
+		Nie nie = new Nie('X');
+		//Nie hereda de DNI-
+		
 		
 	}
 

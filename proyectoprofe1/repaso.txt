@@ -17,3 +17,10 @@ se compila a .class -> "ejecutable de Java" Bytecodes
 
 Constructor --> método definido implícitamente para cada clase, que me permite crear / construir
 objetos o instancias de la clase
+
+Método o funcíon: programa pequeño que pertenece a un clase y que hace algo
+
+	- Cabecera : nombre, entrada y la salida
+	- cuerpo: { } las instrucciones
+	
+Propiedades: fields, atributos... son caracteríticas de la clase

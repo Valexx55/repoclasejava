@@ -38,6 +38,7 @@ public class Dni {
 
 	@Override
 	public String toString() {
+		
 		//this es el objeto llamante
 		System.out.println("en toString");
 		return "Dni [numero_dni=" + this.numero_dni + ", letra_dni=" + this.letra_dni + ", nombre=" + this.nombre + "]";
