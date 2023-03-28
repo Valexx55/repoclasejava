@@ -1,0 +1,19 @@
+CLASE: ARCHIVO / ÁTOMO DE UNA APP JAVA
+	2 CRITERIOS:
+			- NATURALEZA
+			- FUNCIONALIDAD
+			
+DATO: Abstracción matemática del mundo real, necesaria para la represetanción y resolución de un problema
+
+PAQUETE: Carpeta que agrupa a las Clases por familia / funcion
+
+MAIN: Punto de entrada de la Aplicación
+
+archivo .java -> Código fuente
+
+se compila a .class -> "ejecutable de Java" Bytecodes
+
+.jar --> Agrupación de .class / ZIP /LIBRERÍA / BIBLIOTECA
+
+Constructor --> método definido implícitamente para cada clase, que me permite crear / construir
+objetos o instancias de la clase
