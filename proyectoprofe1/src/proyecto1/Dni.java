@@ -28,5 +28,22 @@ public class Dni {
 	public Dni() {
 		System.out.println("Estoy el en constructor por defecto");
 	}
+
+	public Dni(int numero_dni, char letra_dni, String nombre) {
+		super();
+		this.numero_dni = numero_dni;
+		this.letra_dni = letra_dni;
+		this.nombre = nombre;
+	}
+
+	@Override
+	public String toString() {
+		//this es el objeto llamante
+		System.out.println("en toString");
+		return "Dni [numero_dni=" + this.numero_dni + ", letra_dni=" + this.letra_dni + ", nombre=" + this.nombre + "]";
+	}
+	
+	
+	
 	
 }
