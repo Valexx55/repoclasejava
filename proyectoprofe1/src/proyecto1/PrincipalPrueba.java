@@ -10,23 +10,24 @@ public class PrincipalPrueba {
 		char letra_dni = 'L'; //WRAP en un clase
 		String nombre = "Vale";*/
 		
-		String nombre = new String("MANU");
+		/*String nombre = new String("MANU");
 		String nombre1 = new String("MANU5");
 		System.out.println("La longuitud de nombre es " + nombre.length());
 		System.out.println("La longuitud de nombre es " + nombre1.length());
 		
-		System.out.println(nombre);
+		System.out.println(nombre);*/
 		
-		Dni dni = new Dni();//creo un objeto Dni, llmando al constructor de la clase
+		//Dni dni = new Dni();//creo un objeto Dni, llmando al constructor de la clase
 		Dni dni2 = new Dni(53130984, 'H', "Valeriano");
-		Dni dni3 = new Dni(53130985, 'L', "Ricardo");
+		System.out.println(dni2.getNombre() + " " + dni2.getNumero_dni() + " " + dni2.getLetra_dni());
+		/*Dni dni3 = new Dni(53130985, 'L', "Ricardo");
 		String stringDni2 = dni2.toString();
 		String stringDni3 = dni3.toString();
 		System.out.println(stringDni2);
 		System.out.println(stringDni3);
 		System.out.println("Fin de programa");
 		
-		Nie nie = new Nie('X');
+		Nie nie = new Nie('X');*/
 		//Nie hereda de DNI-
 		
 		
