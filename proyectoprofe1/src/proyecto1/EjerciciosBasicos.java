@@ -1,5 +1,7 @@
 package proyecto1;
 
+import java.util.Scanner;
+
 /**
  * 
  * LISTA DE EJERCICIOS DE REPASO A LA PARTE DE INICIACIÓN EN JAVA:
@@ -17,7 +19,16 @@ package proyecto1;
  *	// DARLE UN NOMBRE - camelCase
  *	// ID la entrada -
  *	// ID la salida -
+ *
+ *	//pensar el los pasos en esapñol en psuedocódigo
  */
 public class EjerciciosBasicos {
+	
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);//para leer de teclado
+		System.out.println("Introduzca edad");
+		int edad = scanner.nextInt();
+		System.out.println("Edad introducida "+ edad);
+	}
 
 }

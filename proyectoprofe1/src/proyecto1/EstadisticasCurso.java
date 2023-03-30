@@ -341,12 +341,12 @@ public class EstadisticasCurso {
 		
 			moda = Arrays.stream(opiniones)//creo un fujo de int
 			.boxed()
-			.collect(Collectors.groupingBy(opi-> opi))
-			.values()
+			.collect(Collectors.groupingBy(opi-> opi))//HAGO UN MAPA DONDE LA CLAVE ES LA OPINIÓN
+			.values()//ME QUEDO CON LAS LISTAS (VALOR DEL MAPA)
 			.stream()
 			.max(Comparator.comparing(List::size))
-			.get()
-			.get(0);
+			.get()//mE QUEDO CON LA LISTA MÁS LARGA
+			.get(0);//ME QUEDO CON EL PRIMERO 
 				
 
 		return moda;
