@@ -12,6 +12,11 @@ package proyecto1;
 6) HACER UN MÉTODO QUE RECIBA UNA CADENA Y LA DEVUELVA ALREVÉS
 7) HACER UN PROGRAMA QUE MUESTRE LA SECUENCIA 3, 6, 9, 12, 15 ...99
  *
+ *
+ *	// DEFINO UN MÉTODO
+ *	// DARLE UN NOMBRE - camelCase
+ *	// ID la entrada -
+ *	// ID la salida -
  */
 public class EjerciciosBasicos {
 

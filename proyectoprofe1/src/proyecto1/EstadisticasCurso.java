@@ -71,20 +71,6 @@ public class EstadisticasCurso {
 
 	}
 
-	public static void generarInformeEstadisticosCurso(int[] opiniones) {
-		// obtener el maximo e imprimirlo
-		// recorrer el array y quedarme con el máximo
-		// obtener el mínimo e imprimirlo
-		//// recorrer el array y quedarme con el mínimo
-		// obtener la media e imprimirla
-		// recorrer el array, id sumando los valores y dividirlo entre la cantidad de
-		// elemntos, imprimirla
-
-		// obtener la moda e imprimirla
-		// recorrer el array, id contando el número de apariciones de cada valor (1 a 5)
-		// , y quedarme con el que más
-
-	}
 
 	public static boolean cursoVaBien(int[] opiniones) {
 		boolean vabien = false;
@@ -192,12 +178,6 @@ public class EstadisticasCurso {
 
 		System.out.println("La media es: " + media);
 
-		// obtener la moda e imprimirla
-		// recorrer el array contando el numero de apariciones de cada valor y quedarse
-		// con el mas repetido
-		for (int i = 0; i < opiniones.length; i++) {
-
-		}
 	}
 
 	public static int obtenerMayor(int[] opiniones) {
@@ -273,15 +253,6 @@ public class EstadisticasCurso {
 		return nveces;
 	}
 	
-	// obtener la moda e imprimirla
-	// recorrer el array contando el numero de apariciones de cada valor y quedarse
-	//tengo que contar cuántas veces está el 1
-	//tengo que contar cuántas veces está el 2
-	//tengo que contar cuántas veces está el 3
-	//tengo que contar cuántas veces está el 4
-	//tengo que contar cuántas veces está el 5
-
-	// con el mas repetido
 	
 	/**
 	 * Esta funciones obtiene el dato estadístico de la moda dado un array de enteros
@@ -381,9 +352,6 @@ public class EstadisticasCurso {
 		return moda;
 	}
 
-	// DEFINO UN MÉTODO
-	// DARLE UN NOMBRE - camelCase
-	// ID la entrada -
-	// ID la salida -
+
 
 }
