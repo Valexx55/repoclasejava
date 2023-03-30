@@ -24,3 +24,8 @@ Método o funcíon: programa pequeño que pertenece a un clase y que hace algo
 	- cuerpo: { } las instrucciones
 	
 Propiedades: fields, atributos... son caracteríticas de la clase
+
+this: PALABRA RESERVADA, que tiene 2 significados según el contexto:
+	
+	- En el Constructor: el nuevo objeto
+	- En otros métodos : el objeto llamannte, con el que llamo a esa funcion length

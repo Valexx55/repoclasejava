@@ -15,6 +15,10 @@ package proyecto1;
  */
 public class Dni {
 
+	
+	public final static String SECUENCIA_LETRAS = "TRWAGMYFPDXBNJZSQVHLCKE";
+	
+	public final static int NUM_MAX_DNI = 99999999;//Atributo definido a nivel de clase: común a todos los objetos
 	//ATRIBUTOS-propiedades-fields-campos : PRIVADOS!!! acceder por los métodos de acceso -Getters y Setters
 	//NORMA_ DISEÑO
 	private int numero_dni;
@@ -34,6 +38,25 @@ public class Dni {
 	//constructor
 	public Dni() {
 		System.out.println("Estoy el en constructor por defecto");
+	}
+	
+	
+
+	public Dni(int numero_dni, String nombre) {
+		super();
+		this.numero_dni = numero_dni;
+		this.nombre = nombre;
+	}
+
+
+	public char calcularLetra()
+	{
+		char letra_calculda=' ';
+			
+			int resto = this.numero_dni%Dni.SECUENCIA_LETRAS.length();
+			letra_calculda = Dni.SECUENCIA_LETRAS.charAt(resto);
+		
+		return letra_calculda;
 	}
 
 	public int getNumero_dni() {

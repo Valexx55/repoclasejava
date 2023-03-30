@@ -16,6 +16,12 @@ public class Nie extends Dni{
 		this.prefijo = prefijo;
 	}
 	
+	@Override//SOBREESCRIBIR -> Dar mi versión de un método heradado, que lo sustiuye
+		public char calcularLetra() {
+			// TODO Auto-generated method stub
+			return super.calcularLetra();
+		}
+	
 	
 
 }
