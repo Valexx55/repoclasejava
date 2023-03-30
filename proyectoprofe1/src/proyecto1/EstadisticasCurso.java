@@ -1,9 +1,11 @@
 package proyecto1;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
 
 /**
  * 
@@ -14,6 +16,8 @@ import java.util.stream.IntStream;
  *
  */
 public class EstadisticasCurso {
+	
+	final static int PORCENTAJE_CALIDAD = 80; //CONSTANTE
 
 	// TODO vamos a hacer 2 métodos
 	/*
@@ -28,12 +32,16 @@ public class EstadisticasCurso {
 	 */
 
 	// int opinion_alumno_1 = 1;
+	
+	//COMPLEJIDAD O(n)
 
 	static int[] opiniones_alumnos = { 4, 4, 2, 2, 4, 2, 1, 4, 3, 2, 2, 4, 2, 4, 1, 4, 1 };
 	// static List<Integer> lista_opiniones = List.of(4, 4, 2, 2, 4 , 2 , 1, 4 , 3,
 	// 2 , 2, 4, 2, 4, 1, 4, 1);
 
 	public static void main(String[] args) {
+		
+		//PORCENTAJE_CALIDAD = 30; //Da fallo porque un dato definido como final como Constante, no se puede modficar
 
 		boolean cursook = cursoVaBien(opiniones_alumnos);
 		boolean cursookm = cursoVaBienMohamed(opiniones_alumnos);
@@ -42,8 +50,24 @@ public class EstadisticasCurso {
 		System.out.println("CURSO VA BIEN = " + cursookm);
 		System.out.println("CURSO VA BIEN = " + cursooka);
 
+		System.out.println("****ESTADISTICOS JUAN*******\n");
 		generarInformeEstadisticosCursoJuan(opiniones_alumnos);
+		System.out.println();
+		System.out.println("****ESTADISTICOS SOFIA*******\n");
 		generarInformeEstadisticosCursoSofia(opiniones_alumnos);
+		System.out.println();
+		System.out.println("****ESTADISTICOS VALE*******\n");
+		generarInformeEstadisticosCursoVal(opiniones_alumnos);
+		
+		
+		
+		/*int moda_val =  obtenerModaVal(opiniones_alumnos);
+		System.out.println("La moda es "+ moda_val);*/
+
+		/*boolean vabien = cursoVaBienValStream(opiniones_alumnos);
+		System.out.println("El curso según val va " + vabien);
+		int modavale  = obtenerModaValStream(opiniones_alumnos);
+		System.out.println("Moda vale = " +modavale);*/
 
 	}
 
@@ -82,7 +106,7 @@ public class EstadisticasCurso {
 		float porcentaje_entre_2_y_4 = (opinionesEntre2y4 * 100 / opiniones.length);
 		System.out.println("Porcetaje = " + porcentaje_entre_2_y_4);
 
-		if (porcentaje_entre_2_y_4 >= 80) {
+		if (porcentaje_entre_2_y_4 >= PORCENTAJE_CALIDAD) {
 			vabien = true;
 		} else {
 			vabien = false;
@@ -105,7 +129,7 @@ public class EstadisticasCurso {
 		}
 
 		// comprobobar si ese número es más o igual del 80% del total o menos
-		if (opinionEnRango2_4 * 100 / opiniones.length >= 80) {
+		if (opinionEnRango2_4 * 100 / opiniones.length >= PORCENTAJE_CALIDAD) {
 			vabien = true;
 		}
 		;
@@ -134,7 +158,7 @@ public class EstadisticasCurso {
 	public static void generarInformeEstadisticosCursoJuan(int[] opiniones) {
 		int maximo = opiniones[0];
 		int minimo = opiniones[0];
-		int suma = 0;
+		float suma = 0;
 		float media;
 
 		// obtener el maximo e imprimirlo
@@ -202,36 +226,105 @@ public class EstadisticasCurso {
 
 	public static float obtenerMedia(int[] opiniones) {
 		float media = 0;
-		int suma_de_opiniones = 0;
+		float suma_de_opiniones = 0;
 		int cantidad_de_opiniones = opiniones.length;
 
-			for (int i = 0; i < opiniones.length; i++) {
-				suma_de_opiniones = suma_de_opiniones + opiniones[i];
-			}
-			media = suma_de_opiniones / cantidad_de_opiniones;
+		for (int i = 0; i < opiniones.length; i++) {
+			suma_de_opiniones = suma_de_opiniones + opiniones[i];
+		}
+		media = suma_de_opiniones / cantidad_de_opiniones;
 
 		return media;
 	}
-	
-	public static int obtenerModa (int[] opiniones)
-	{
+
+	public static int obtenerModa(int[] opiniones) {
 		int moda = 0;
 		int maximas_veces_repetido = 0;
 
-			for (int i = 0; i < opiniones.length; i++) {
-				int repeticiones = 0;
-				for (int j = 0; j < opiniones.length; j++) {
-					if (opiniones[i] == opiniones[j]) {
-						repeticiones++;
-					}
-					if (repeticiones > maximas_veces_repetido) {
-						moda = opiniones[i];
-						maximas_veces_repetido = repeticiones;
-					}
+		for (int i = 0; i < opiniones.length; i++) {
+			int repeticiones = 0;
+			for (int j = 0; j < opiniones.length; j++) {
+				if (opiniones[i] == opiniones[j]) {
+					repeticiones++;
+				}
+				if (repeticiones > maximas_veces_repetido) {
+					moda = opiniones[i];
+					maximas_veces_repetido = repeticiones;
 				}
 			}
+		}
 
 		return moda;
+	}
+	
+	//ocurrences en inglés es el número de veces o apariciones de un dato
+	public static int cuentaNevecesOpinion (int[] opiniones, int opinion_buscada)
+	{
+		int nveces = 0;
+			
+			for (int opinion_actual : opiniones) //for each
+			{
+				if (opinion_actual == opinion_buscada)
+				{
+					nveces++;
+				}
+			}
+		
+		return nveces;
+	}
+	
+	// obtener la moda e imprimirla
+	// recorrer el array contando el numero de apariciones de cada valor y quedarse
+	//tengo que contar cuántas veces está el 1
+	//tengo que contar cuántas veces está el 2
+	//tengo que contar cuántas veces está el 3
+	//tengo que contar cuántas veces está el 4
+	//tengo que contar cuántas veces está el 5
+
+	// con el mas repetido
+	
+	/**
+	 * Esta funciones obtiene el dato estadístico de la moda dado un array de enteros
+	 * La moda es el valor más repetido - con "más ocurrences" -
+	 * 
+	 * @param opiniones el array de entrada que contiene las opiones
+	 * @return la moda. en caso de que haya igualdad entre varios, devuelve el primero
+	 */
+	public static int obtenerModaVal(int[] opiniones) {
+		int moda = 0;
+		int max_repetida = 0;
+		int num_repectiones = 0;
+		
+		
+			for (int nopinion=1; nopinion<=5 ;nopinion++)
+			{
+				num_repectiones = cuentaNevecesOpinion(opiniones, nopinion);
+				if (num_repectiones>max_repetida)
+				{
+					max_repetida = num_repectiones;
+					moda = nopinion;
+				}
+			}
+		
+		return moda;
+	}
+	
+	
+	public static void generarInformeEstadisticosCursoVal(int[] opiniones)
+	{
+		//hacer el maximo, min, media con Stremas/kambdas/programación funcional
+		IntSummaryStatistics estadisticas = Arrays.stream(opiniones).summaryStatistics();
+		
+		int max = estadisticas.getMax();
+		int min = estadisticas.getMin();
+		double media = estadisticas.getAverage();
+		int moda = obtenerModaVal(opiniones);
+		
+		System.out.println("MAX = "+ max);
+		System.out.println("MIN = "+ min);
+		System.out.println("MEDIA AVG = "+ media);
+		System.out.println("MODA = "+ moda);
+		
 	}
 
 	public static void generarInformeEstadisticosCursoSofia(int[] opiniones) {
@@ -246,6 +339,46 @@ public class EstadisticasCurso {
 		System.out.println("Media: " + media);
 		System.out.println("Moda: " + moda);
 
+	}
+
+	public static boolean cursoVaBienValStream(int[] opiniones) {
+		boolean vaBien = false;
+
+		vaBien = Arrays.stream(opiniones)// creo un fujo de int
+				.boxed()// lo paso de int a Integer, "lo envuelvo", para poder aplicar los operadores de
+						// Stream<Integer>
+				.collect // uso una operación de reducción: de una lista/colección, pasaremos a un valor
+				(Collectors.teeing(
+						// genero una lista sólo con las que están entr 2 y 4
+						Collectors.filtering(opinion -> opinion >= 2 && opinion <= 4, Collectors.toList()),
+						// cuento todos
+						Collectors.counting(),
+						// los resultados anteriores, se cargan respectivamente en los parámetros
+						// lista2y4, total
+						(lista2y4, total) -> {
+							// lo que devuelto aquí, es el resultado final de collect: un boolean
+							// si el tamaño de la lista entre 2 y 4, es más del 80 por cierto, verdadero
+							// si no, falso :)
+							return (lista2y4.size() >= total * 0.8);
+						}));
+
+		return vaBien;
+	}
+
+	public static int obtenerModaValStream(int[] opiniones) {
+		int moda = 0;
+		
+			moda = Arrays.stream(opiniones)//creo un fujo de int
+			.boxed()
+			.collect(Collectors.groupingBy(opi-> opi))
+			.values()
+			.stream()
+			.max(Comparator.comparing(List::size))
+			.get()
+			.get(0);
+				
+
+		return moda;
 	}
 
 	// DEFINO UN MÉTODO
