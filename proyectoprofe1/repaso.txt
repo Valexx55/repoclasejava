@@ -29,3 +29,17 @@ this: PALABRA RESERVADA, que tiene 2 significados según el contexto:
 	
 	- En el Constructor: el nuevo objeto
 	- En otros métodos : el objeto llamannte, con el que llamo a esa funcion length
+	
+atributo stático: es un atributo definido a nivel de clase, común a todos los objetos
+
+
+tipos de bucles:
+	
+	FOR N VECES - FIJAS - PPIO A FIN - RECORRIDO TOTAL
+	WHILE de 0 A N VECES 
+	DO WHILE de 1 a N veces
+	
+operadores lógicos
+
+	and &&
+	not ! 
