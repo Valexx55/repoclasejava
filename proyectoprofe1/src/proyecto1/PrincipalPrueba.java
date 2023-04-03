@@ -1,5 +1,7 @@
 package proyecto1;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -31,15 +33,32 @@ public class PrincipalPrueba {
 		
 		Random random = new Random();
 		Dni dni_nuevo = null;
+		//genéricos <>
+		List<Dni> lista_dnis = new ArrayList<Dni>();//<> operador diamante
 		for (String nombre : nombres) //recorro la lista de nombres que recibo como entrada 
 		{
+			//TODO si estoy en un número par, creo un DNI
+			//TODO si estoy en un número impar, creo un NIE
+			//TODO sobrescribir el método calcularLetra, para que se tenga en cuenta el prefijo 
+			//en el caso de NIE
+			//https://www.interior.gob.es/opencms/es/servicios-al-ciudadano/tramites-y-gestiones/dni/calculo-del-digito-de-control-del-nif-nie/
+			
+			//5313098 - H
+			//Z5313098 - S
 			
 			int numdni_aleatorio = random.nextInt(Dni.NUM_MAX_DNI);//calculo un número aleatorio
 			dni_nuevo =new Dni(numdni_aleatorio, nombre);//creo un dni con el nombre actual y el número
 			char letra_calculada = dni_nuevo.calcularLetra();//calculo la letra de ese número
 			dni_nuevo.setLetra_dni(letra_calculada);//le asigno la letra calculada a ese DNI
 			
-			//TODO: CREAR LISTA DE DNIS
+			lista_dnis.add(dni_nuevo);
+			
+		
+		}
+		
+		for (Dni documento : lista_dnis)
+		{
+			System.out.println(documento.getNombre() + " " + documento.getNumero_dni() + " "+ documento.getLetra_dni());
 		}
 		
 		//TODO: ver el nuevo SWTICH de JAVA 14

@@ -43,3 +43,5 @@ operadores lógicos
 
 	and &&
 	not ! 
+
+super es una palabra reservada que hace referencia al método del padre (al del mismo nombre)
