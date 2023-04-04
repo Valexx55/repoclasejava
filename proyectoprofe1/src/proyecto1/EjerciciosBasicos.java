@@ -30,6 +30,38 @@ import java.io.IOException;
  * //pensar el los pasos en esapñol en psuedocódigo
  */
 public class EjerciciosBasicos {
+	
+	/**
+	 * Este método devuelve la última posición donde aparece el caracter recibido en la cadena
+	 * 
+	 * @param cadena la cadena donde tengo que buscar
+	 * @param caracter la letra buscada
+	 * @return -1 si no está el caracter en la cadena o la posición última en caso contrario
+	 */
+	public static int ultimaLetra (String cadena, char caracter_buscado)
+	{
+		int ultima_poscion = -1;
+		int posicion = cadena.length()-1;
+		boolean aparecido = false;
+		char caracter_actual = ' ';
+		
+			//mientras no aparezca y no llegue al 0
+			while ((!aparecido) && (posicion>=0))
+			{
+				caracter_actual = cadena.charAt(posicion);
+				if (caracter_actual == caracter_buscado)
+				{
+					aparecido = true;
+					ultima_poscion = posicion; //me tengo que quedar con la última posición!
+				} else {
+					posicion = posicion-1; //posicion--;
+				}
+			}
+			
+		
+		return ultima_poscion;
+		
+	}
 
 	/**
 	 * Este método nos informa de si una letra está en una cadena
@@ -90,6 +122,12 @@ public class EjerciciosBasicos {
 		System.out.println("Pertenece = " + pertenece);
 		pertenece = perteneceACadena("optimizado", 'm');// parámetros actuales
 		System.out.println("Pertenece = " + pertenece);
+		
+		
+		int ulti_pos = ultimaLetra("REAL MADRID", 'D');
+		System.out.println("ULTI_POS = " + ulti_pos);
+		ulti_pos = ultimaLetra("REAL MADRID", 'z');
+		System.out.println("ULTI_POS = " + ulti_pos);
 
 	}
 }

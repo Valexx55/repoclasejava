@@ -39,6 +39,11 @@ tipos de bucles:
 	WHILE de 0 A N VECES 
 	DO WHILE de 1 a N veces
 	
+sentencias condicionales
+
+	IF ELSE
+	SWTICH (CASOS)
+	
 operadores lógicos
 
 	and &&

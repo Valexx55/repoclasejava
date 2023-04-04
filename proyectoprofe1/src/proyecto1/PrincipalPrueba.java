@@ -29,7 +29,14 @@ public class PrincipalPrueba {
 	
 	public static void main(String[] nombres) 
 	{
+		//Y7863318 (T)
+		Dni nie_ari = new Nie(7863318, "Ariana", 'Y'); //T
+		char letra = nie_ari.calcularLetra();
+		System.out.println("La letra del NIE de ARi es = " + letra);
 		
+		Dni nie_val = new Nie(53130984, "Vale", 'X');//H
+		letra = nie_val.calcularLetra();
+		System.out.println("La letra del NIE de Val es = " + letra);
 		
 		Random random = new Random();
 		Dni dni_nuevo = null;
@@ -56,10 +63,10 @@ public class PrincipalPrueba {
 		
 		}
 		
-		for (Dni documento : lista_dnis)
+		/*for (Dni documento : lista_dnis)
 		{
 			System.out.println(documento.getNombre() + " " + documento.getNumero_dni() + " "+ documento.getLetra_dni());
-		}
+		}*/
 		
 		//TODO: ver el nuevo SWTICH de JAVA 14
 		
