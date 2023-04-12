@@ -92,4 +92,7 @@ clave=valor
 y separados entre sí por el ampersand &
 si tengo más de uno
 
+método
+get --> doGET
+url
 http://localhost:8080/miprimeraappweb/ServicioDni?name=dani&dni=8974
