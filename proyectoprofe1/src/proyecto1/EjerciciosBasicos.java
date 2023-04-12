@@ -40,7 +40,7 @@ public class EjerciciosBasicos {
 		String secuencia = "3";
 		
 			for(int i=6; i<=99; i=i+3) {
-				secuencia = secuencia + ", "+ i;
+				secuencia = secuencia + ", "+ i;//al ser inmutable el string, cada vez que lo modifico, intrermante se crea otro
 			}
 		
 			System.out.println(secuencia);
@@ -51,7 +51,7 @@ public class EjerciciosBasicos {
 		StringBuilder secuencia = new StringBuilder("3");
 		
 			for(int i=6; i<=99; i=i+3) {
-				secuencia.append(", "+ i);
+				secuencia.append(", "+ i); //al ser mutable, se modifica siempre la misma variable
 			}
 		
 			System.out.println(secuencia);

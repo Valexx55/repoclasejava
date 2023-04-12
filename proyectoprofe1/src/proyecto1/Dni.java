@@ -98,7 +98,15 @@ public class Dni {
 		return "Dni [numero_dni=" + this.numero_dni + ", letra_dni=" + this.letra_dni + ", nombre=" + this.nombre + "]";
 	}
 	
-	
+	public static boolean esDniCorrecto(Dni dni) {
+		boolean dni_correcto = false;
+		char letra_calculada = ' ';	
+		
+			letra_calculada =  dni.calcularLetra();
+			dni_correcto = (letra_calculada == dni.getLetra_dni());
+			
+		return dni_correcto;
+	}
 	
 	
 }

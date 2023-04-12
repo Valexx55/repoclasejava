@@ -1,0 +1,25 @@
+ENUNCIADO IMC
+
+Queremos hacer una app que calcule el Índice Masa Corporal
+
+EL IMC es una medida de salud, que estable una relación entre el peso
+y la estatura
+
+la fórmula es =  peso (kg) /  estatura (metros) al cuadrado
+
+si el imc < 16 --> Desnutrición
+si el imc >=16 y < 18 --> Delgado
+si el imc >= 18 y < 25 --> Ideal
+si el imc >= 25 y < 31 --> Sobrepeso
+si el imc >= 31 --> Obesidad
+
+Haced la app que tome los datos peso y estatura de una persona
+y le infome de cúal es su IMC, tanto númerico, como nominal 
+
+1) NÚMERO CLASES
+2) EL ALGORITMO
+	//1 pedir peso
+	//2 pedir estatura
+	//3 calcular el imc
+	//4 informar 
+3) IMPLEMENTARLO

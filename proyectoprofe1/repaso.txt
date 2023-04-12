@@ -32,6 +32,17 @@ this: PALABRA RESERVADA, que tiene 2 significados según el contexto:
 	
 atributo stático: es un atributo definido a nivel de clase, común a todos los objetos
 
+método estático:
+
+
+	Un método estático está definido a nivel de clase.
+	Se invoca con el nombre de la clase (mayúscula)
+	y su comportamiento no depende de con qué objeto se invoca
+	
+	por contra, están los métodos no estáticos o "dinámicos"
+	ellos, se invocan mediante una instancia (objeto)
+	y su compartamiento sí varía de invocarlo con un un objeto u otro
+
 
 tipos de bucles:
 	
@@ -50,3 +61,35 @@ operadores lógicos
 	not ! 
 
 super es una palabra reservada que hace referencia al método del padre (al del mismo nombre)
+
+
+URL/URI/DIRECCIÓN WEB
+
+http://localhost:8080/miprimeraappweb/inicio.html
+
+http: -- PROTOCOLO
+
+localhost:8080 IP // número de teléfono 127.0.0.1
+
+8080 - PUERTO 
+
+miprimeraappweb // dentro de Tomcat, identifico mi APP
+
+/inicio-html --> un recurso estático
+
+
+"SERVLET"--
+
+Un servlet es una clase de Java, que se invoca a partir de una URL
+petición HTTP
+ 
+"Controller- controlador"
+
+Parámetros de la url - son TEXTO
+van después del símoblo de la interrogación?
+en formato nombre=valor
+clave=valor
+y separados entre sí por el ampersand &
+si tengo más de uno
+
+http://localhost:8080/miprimeraappweb/ServicioDni?name=dani&dni=8974

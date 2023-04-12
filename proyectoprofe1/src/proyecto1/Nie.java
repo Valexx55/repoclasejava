@@ -83,7 +83,8 @@ public class Nie extends Dni{
 		super(numero_dni, letra_dni, nombre);
 		this.prefijo = prefijo;
 	}
-
+	
+	
 	
 	
 	
