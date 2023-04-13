@@ -1,8 +1,10 @@
 package edu.servlet;
 
 import java.io.IOException;
+import java.net.http.HttpClient;
 import java.util.Objects;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -82,17 +84,33 @@ public class ServicioDni extends HttpServlet {
 		//nombre==""; nombre.isEmpty()
 		//Objects.isNull(dni); nombre==null
 		if(nombre==null ||dni==null||nombre.isEmpty()||dni.isEmpty()) {
-			response.setStatus(500);
+			response.setStatus(HttpsURLConnection.HTTP_INTERNAL_ERROR);
 			response.getWriter().append("Error, rellene todos los datos");
 		} else if (!(isNumeric(dni))) {
-			response.setStatus(400);
+			response.setStatus(HttpsURLConnection.HTTP_BAD_REQUEST);
 			response.getWriter().append("Error, mándame un DNI numérico");
 		} else {
+			//LA COSA HA IDO A IDO BIEN
+			System.out.println("Va bien, DNI correcto");
 			int numero_dni =  Integer.parseInt(dni);
 			Dni objeto_dni = new Dni (numero_dni, nombre);
-			char calcular_letra = objeto_dni.calcularLetra();
-			response.setStatus(200);
-			response.getWriter().append("Su letra es: " + calcular_letra);
+			char letra_calculada = objeto_dni.calcularLetra();
+			objeto_dni.setLetra_dni(letra_calculada);
+			
+			System.out.println("DNI = " + objeto_dni.toString());
+			
+			response.setStatus(HttpsURLConnection.HTTP_OK);//200
+			//echo a la request, que es como una especie de saco
+			//de bolsa, de memoria intermedia, el objeto DNI
+			//le meto el objeto dni a la request, porque
+			//ese objeto constituye la parte dinámica/variable de la página
+			//de salida
+			request.setAttribute("dni", objeto_dni);
+			//decirle al servidor, que envíe el jsp (la web) de salida correspodiente
+			//"dale al cliente esta página como respuesta" - este JSP
+			
+			request.getRequestDispatcher("salidadni.jsp").forward(request, response);
+			//response.getWriter().append("Su letra es: " + calcular_letra);
 		}
 	}
 

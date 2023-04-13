@@ -96,3 +96,7 @@ método
 get --> doGET
 url
 http://localhost:8080/miprimeraappweb/ServicioDni?name=dani&dni=8974
+
+
+"deprecated" --> obsoleto cuando una función, métdoo constante o clase se marca
+como "pasadade moda" -- recomendable buscar la nueva fórmula por internet
