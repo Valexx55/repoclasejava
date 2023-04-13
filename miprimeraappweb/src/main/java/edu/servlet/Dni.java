@@ -25,6 +25,8 @@ public class Dni {
 	private char letra_dni;
 	private String nombre;
 	
+	//private Paciente paciente;
+	
 	//MÉTODOS -- funciones - qué operaciones puedo hacer con el dni
 	//firmar
 	//identificar
