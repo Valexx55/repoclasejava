@@ -2,6 +2,9 @@ package edu.servlet;
 
 import java.io.IOException;
 import java.net.http.HttpClient;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.Objects;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -11,6 +14,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+//TODO: MODIFICAR EL SERVICIO PARA QUE CADA DNI
+//RECIBIDO, SER GUARDE EN UN FICHERO
+//USAD files y path COMO en el ejemplo https://codeshare.io/EB8Rep
 /**
  * Servlet implementation class ServicioDni
  */
@@ -20,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 //http://localhost:8080/miprimeraappweb/inicio.html
 public class ServicioDni extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Path fichero_salida_dnis;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -27,30 +35,33 @@ public class ServicioDni extends HttpServlet {
     public ServicioDni() {
         super();
         // TODO Auto-generated constructor stub
+        System.out.println("En el constructor");
+    }
+    
+    @Override
+    public void init() throws ServletException {
+    	// TODO Auto-generated method stub
+    	super.init();
+    	System.out.println("En el init");
+    	//donde voy a comprobar si el fichero existe
+    	// y si no existe, lo creo
+    	//this es el Servlet creado / el objeto que atiende las peticiones / El controlador en MVC
+    	this.fichero_salida_dnis = Path.of(getServletContext().getRealPath("/listadnis.txt"));
+    	if (!Files.exists(this.fichero_salida_dnis))
+    	{
+    		System.out.println("El fichero no existe, lo creo");
+    		try {
+				Files.createFile(this.fichero_salida_dnis);
+				System.out.println("El fichero creado");
+				System.out.println("EL PATH ES " + this.fichero_salida_dnis);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("Error al crear el fichero");
+			}
+    	}
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGetMio(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO ADD LA CLASE DNI, CALCULAR LA LETRA Y GENERAR LA RESPUESTA
-		 
-		String nombre = request.getParameter("name");
-		String dni = request.getParameter("dni");
-		
-		System.out.println("Nombre rx " + nombre);
-		System.out.println("Dni rx " + dni);
-		//crear un objeto dni y llamar al calular letra
-		//pasar del dni String al dni númerico, para poder consturir el objeto dni
-		int numero_dni = Integer.parseInt(dni);//"CASTING" - conversión de tipos
-		Dni objeto_dni = new Dni(numero_dni, nombre);
-		char letra_dni = objeto_dni.calcularLetra();
-		
-		//response.setStatus(500);
-		//con getWriter estoy escribiendo en el cuerpo de la respuesta
-		response.getWriter().append("SU LETRA ES " + letra_dni);
-	}
 	
 	/**
 	 * 
@@ -76,28 +87,33 @@ public class ServicioDni extends HttpServlet {
 
 		//http://localhost:8080/miprimeraappweb/ServicioDni?name=&dni=
 		// TODO Auto-generated method stub
-		String nombre = request.getParameter("name");
-		String dni = request.getParameter("dni");
+		String param_nombre_dni = request.getParameter("name");
+		String param_num_dni = request.getParameter("dni");
 		// Crear un objeto dni y llamar al calcular letra
 		//pasar del dni String al dni numérico para poder construir el objeto dni
 		
 		//nombre==""; nombre.isEmpty()
 		//Objects.isNull(dni); nombre==null
-		if(nombre==null ||dni==null||nombre.isEmpty()||dni.isEmpty()) {
+		if(param_nombre_dni==null ||param_num_dni==null||param_nombre_dni.isEmpty()||param_num_dni.isEmpty()) {
 			response.setStatus(HttpsURLConnection.HTTP_INTERNAL_ERROR);
 			response.getWriter().append("Error, rellene todos los datos");
-		} else if (!(isNumeric(dni))) {
+		} else if (!(isNumeric(param_num_dni))) {
 			response.setStatus(HttpsURLConnection.HTTP_BAD_REQUEST);
 			response.getWriter().append("Error, mándame un DNI numérico");
 		} else {
 			//LA COSA HA IDO A IDO BIEN
 			System.out.println("Va bien, DNI correcto");
-			int numero_dni =  Integer.parseInt(dni);
-			Dni objeto_dni = new Dni (numero_dni, nombre);
+			int numero_dni =  Integer.parseInt(param_num_dni);
+			Dni objeto_dni = new Dni (numero_dni, param_nombre_dni);
 			char letra_calculada = objeto_dni.calcularLetra();
 			objeto_dni.setLetra_dni(letra_calculada);
 			
 			System.out.println("DNI = " + objeto_dni.toString());
+			
+			//Escribir en el fichero de salida
+			Files.writeString(this.fichero_salida_dnis, objeto_dni.toString() + "\n", StandardOpenOption.APPEND);
+			
+			
 			
 			response.setStatus(HttpsURLConnection.HTTP_OK);//200
 			//echo a la request, que es como una especie de saco

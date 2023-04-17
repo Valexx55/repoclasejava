@@ -105,3 +105,12 @@ SERIALIZAR --> Transformar un objeto o variable a su represetanción textual
 para su almacenamiento o transmisión 
 
 DESERIALIZAR --> Pasar de Texto a Objeto o Variable
+
+"escapar"--> poner el caracter de escape \ delante de una letra, 
+para que tenga un significado especial "escapar"
+ \n --> INtro, salto de línea
+ \t --> Tabular. 5 espacios
+ \s --> Un espacio
+ 
+ CALLBACK --> "LLAMADA POR DETRÁS" CUANDO OTRO PROGRAMA, LLAMA AL MÍO
+ INVOCA AL MÍA
