@@ -3,6 +3,7 @@ package proyecto1.ficheros;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 import proyecto1.Dni;
@@ -18,27 +19,42 @@ public class ListadoServiceImpl implements ListadoService {
 		
 	}
 	
+	private Dni lineaFichero2Dni (String linea)
+	{
+		Dni dni = null;
+		String [] array_dni = null;
+		
+			array_dni = linea.split("-");//10-X-MESSI
+			int num_dni = Integer.parseInt(array_dni[0]);
+			char letra = array_dni[1].charAt(0);//letra
+			String nombre = array_dni[2];//nombre
+    		dni = new Dni(num_dni, letra, nombre);
+		
+		return dni;
+	}
 
 	//TODO MODIFICAR ESTE SERIVCIO, PARA QUE DEVUELVA EL LISTADO DE DNIS
 	@Override
 	public List<Dni> obtenerListaDnis() {
 		List<Dni> lista_dnis = null;
 		Path path = null;
-			//LEER DEL FICHERO DONDE SE GUARDAN LOS DNIS
-			//Y CONFORMAR LA LISTA
+		Dni dni_aux = null;
+			
 			path = Path.of("./listadnis.txt");
 			 try {
 				List<String> lineas= Files.readAllLines(path);
+				lista_dnis = new ArrayList<Dni>();
 				for (String linea : lineas)
 				{
 					System.out.println(linea);
-					//TENGO QUE PARSEAR - procesarla clasificando el contenido LA LÍNEA Y PASARLA A UN OBJETO DE DNI
+					dni_aux = lineaFichero2Dni(linea);
+					lista_dnis.add(dni_aux);
 				}
+				System.out.println("LISTA DNIS = "+lista_dnis);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
 		
 		return lista_dnis;
 	}
