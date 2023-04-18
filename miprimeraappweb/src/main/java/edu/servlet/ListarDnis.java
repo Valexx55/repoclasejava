@@ -11,13 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.servlet.service.ListadoService;
 import edu.servlet.service.ListadoServiceImpl;
+import edu.servlet.service.ListadoServiceImplBD;
 
 /**
  * Servlet implementation class ListarDnis
  * este servicio, consulta los dnis alojados en el fichero
  * y los muestra en un JSP
  */
-@WebServlet("/ListarDnis")
+@WebServlet("/ListarDnis")//
 public class ListarDnis extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -35,7 +36,7 @@ public class ListarDnis extends HttpServlet {
     public void init() throws ServletException {
     	// TODO Auto-generated method stub
     	super.init();
-    	this.listadoService = new ListadoServiceImpl();
+    	this.listadoService = new ListadoServiceImplBD(); // new ListadoServiceImpl();
     }
 
 	/**
@@ -49,8 +50,6 @@ public class ListarDnis extends HttpServlet {
 		//DEVOLVERLA EN EL JSP
 		request.setAttribute("listadnis", lista_dnis);
 		request.getRequestDispatcher("listadodnis.jsp").forward(request, response);
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
