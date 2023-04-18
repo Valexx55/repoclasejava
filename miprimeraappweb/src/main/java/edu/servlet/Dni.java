@@ -97,7 +97,7 @@ public class Dni {
 		
 		//this es el objeto llamante
 		System.out.println("en toString");
-		return "Dni [numero_dni=" + this.numero_dni + ", letra_dni=" + this.letra_dni + ", nombre=" + this.nombre + "]";
+		return this.numero_dni + "-" + this.letra_dni + "-" + this.nombre;
 	}
 	
 	public static boolean esDniCorrecto(Dni dni) {

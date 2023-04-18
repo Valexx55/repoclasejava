@@ -114,3 +114,5 @@ para que tenga un significado especial "escapar"
  
  CALLBACK --> "LLAMADA POR DETRÁS" CUANDO OTRO PROGRAMA, LLAMA AL MÍO
  INVOCA AL MÍA
+ 
+ PARSEAR - procesar un bloque de bytes/lineas/texto clasificando el contenido

@@ -39,6 +39,14 @@ public class ServicioDni extends HttpServlet {
     }
     
     @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	// TODO Auto-generated method stub
+    	System.out.println("en service");
+    	super.service(req, resp);
+    	
+    }
+    
+    @Override
     public void init() throws ServletException {
     	// TODO Auto-generated method stub
     	super.init();
@@ -59,6 +67,9 @@ public class ServicioDni extends HttpServlet {
 				e.printStackTrace();
 				System.out.println("Error al crear el fichero");
 			}
+    	} else {
+    		System.out.println("El fichero ya existía");
+    		System.out.println("EL PATH ES " + this.fichero_salida_dnis);
     	}
     }
 
