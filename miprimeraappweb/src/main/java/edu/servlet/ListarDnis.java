@@ -36,7 +36,7 @@ public class ListarDnis extends HttpServlet {
     public void init() throws ServletException {
     	// TODO Auto-generated method stub
     	super.init();
-    	this.listadoService = new ListadoServiceImplBD(); // new ListadoServiceImpl();
+    	this.listadoService = new ListadoServiceImpl();//ListadoServiceImplBD(); // new ListadoServiceImpl();
     }
 
 	/**

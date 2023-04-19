@@ -1,19 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link rel="stylesheet" href="estilolistadodnis.css">
+<title>LISTA DE DNIS</title>
 </head>
 <body>
-AQUÍ IRÁ EL LISTADO
-<!-- for, para mostrar cada DNI. tngo que mostrar una lista
-EL ${} jstl Java Standart Tag Library
-bucles, ifs, switchs, para gente que no sabe programar 
+	<c:if test="${not empty listadnis}">
+		<table >
+			<tr>
+				<th>Numero DNI</th>
+				<th>Letra DNI</th>
+				<th>Nombre</th>
+			</tr>
+			<c:forEach items="${listadnis}" var="dniaux">
+				<tr>
+					<td>${dniaux.numero_dni}</td>
+					<td>${dniaux.letra_dni}</td>
+					<td>${dniaux.nombre}</td>
+				</tr>
+			</c:forEach>
 
-TODO usamos la libreria JSTL (para hacer un for al estilo "HTML"
-combinada com EL ${} y así accedemos a todos los dnis de la lista
--->
+		</table>
+	</c:if>
+	<c:if test="${empty listadnis}">
+		EL LISTADO DE DNIS ESTÁ VACÍO
+	</c:if>
+
 </body>
 </html>
