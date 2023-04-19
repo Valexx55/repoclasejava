@@ -1,4 +1,4 @@
-package edu.servlet.service;
+package edu.service;
 
 import java.util.List;
 

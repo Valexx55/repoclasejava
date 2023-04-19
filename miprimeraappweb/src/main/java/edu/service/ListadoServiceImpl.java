@@ -1,4 +1,4 @@
-package edu.servlet.service;
+package edu.service;
 
 import java.io.IOException;
 import java.nio.file.Files;

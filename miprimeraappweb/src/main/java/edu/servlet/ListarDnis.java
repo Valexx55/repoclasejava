@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.servlet.service.ListadoService;
-import edu.servlet.service.ListadoServiceImpl;
-import edu.servlet.service.ListadoServiceImplBD;
+import edu.service.ListadoService;
+import edu.service.ListadoServiceImpl;
+import edu.service.ListadoServiceImplBD;
 
 /**
  * Servlet implementation class ListarDnis
