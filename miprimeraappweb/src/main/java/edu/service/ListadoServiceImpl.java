@@ -33,13 +33,13 @@ public class ListadoServiceImpl implements ListadoService {
 
 	//TODO MODIFICAR ESTE SERIVCIO, PARA QUE DEVUELVA EL LISTADO DE DNIS
 	@Override
-	public List<Dni> obtenerListaDnis() {
+	public List<Dni> obtenerListaDnis(Path path) {
 		List<Dni> lista_dnis = null;
-		Path path = null;
+		//Path path = null;
 		Dni dni_aux = null;
 			
 			//path = Path.of("./listadnis.txt");
-			 path = Path.of("C:\\Users\\valer\\Documents\\CAS\\WEB SERVICIES CON J2EE IFCD07\\repoprofe\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\miprimeraappweb\\listadnis.txt");
+			// path = Path.of("C:\\Users\\valer\\Documents\\CAS\\WEB SERVICIES CON J2EE IFCD07\\repoprofe\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\miprimeraappweb\\listadnis.txt");
 			 try {
 				List<String> lineas= Files.readAllLines(path);
 				lista_dnis = new ArrayList<Dni>();

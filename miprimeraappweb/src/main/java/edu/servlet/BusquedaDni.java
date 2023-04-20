@@ -1,6 +1,8 @@
 package edu.servlet;
 
 import java.io.IOException;
+import java.nio.file.Path;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.service.BuscarDniEnFichero;
+import edu.util.Constantes;
 
 /**
  * Servlet implementation class BusquedaDni
@@ -34,7 +37,8 @@ public class BusquedaDni extends HttpServlet {
 		String numdni = peticionHTTP.getParameter("dni");//esto extrae de la url el valor del parmaetro dni
 		System.out.println("nos llega para buscar un dni " + numdni);
 		//2 BUSCAR ESE DNI EN EL FICHERO
-		Dni dni_buscado = BuscarDniEnFichero.buscarNumeroDniEnFichero(numdni);
+		Path path = Path.of(getServletContext().getRealPath(Constantes.RUTA_FICHERO_DNIS));
+		Dni dni_buscado = BuscarDniEnFichero.buscarNumeroDniEnFichero(numdni, path);
 		//3 GENERO LA RESPUESTA
 		peticionHTTP.setAttribute("dnibuscado", dni_buscado);
 		peticionHTTP.getRequestDispatcher("salidabusqueda.jsp").forward(peticionHTTP, response);

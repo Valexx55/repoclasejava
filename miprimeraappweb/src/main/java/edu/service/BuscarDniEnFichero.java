@@ -35,14 +35,14 @@ public class BuscarDniEnFichero {
 	 * @return null si no encuentro el DNI asociado a es número o el DNI si existe 
 	 * en el fichero
 	 */
-	public static Dni buscarNumeroDniEnFichero (String cadenaDni)
+	public static Dni buscarNumeroDniEnFichero (String cadenaDni, Path path)
 	{
 		Dni dnibuscado = null;
 		boolean encontrado = false;
 		int numdniBuscado = Integer.parseInt(cadenaDni);
 			
 		//TRY CON RECUROS TRY WITH RESOURCES -- LOS RECURSOS SE CIERRAN SOLOS
-		 try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\valer\\Documents\\CAS\\WEB SERVICIES CON J2EE IFCD07\\repoprofe\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\miprimeraappweb\\listadnis.txt")))
+		 try (BufferedReader br = new BufferedReader(new FileReader(path.toFile())))
 		 {
 			//List<String> lineas= Files.readAllLines(path);
 			 //leer lineas, mienteras que no aparezca el dni buscado y no llegue al final del fichero
