@@ -25,6 +25,7 @@
 			</c:forEach>
 
 		</table>
+		<p><a href="./">Ir al menú principal</a></p>
 	</c:if>
 	<c:if test="${empty listadnis}">
 		EL LISTADO DE DNIS ESTÁ VACÍO

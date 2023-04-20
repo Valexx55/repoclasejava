@@ -32,6 +32,8 @@ GENERAMOS LA RESPUESTA
 			<li><label for="letra">Letra Dni:</label> <input type="text"
 				id="letra" name="letra" value="${dni.letra_dni}"></li>
 		</ul>
+		<p><a href="./">Ir al menú principal</a></p>
+		<p><a href="ListarDnis">Listar DNIS</a></p>
 	</form>
 
 </body>
