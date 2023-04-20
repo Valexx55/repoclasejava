@@ -13,7 +13,7 @@ package edu.servlet;
  * se les llama JAVA BEANS, BEANS, POJO - Plain Old Java Object-
  *
  */
-public class Dni {
+public class Dni implements Comparable<Dni> {
 
 	
 	public final static String SECUENCIA_LETRAS = "TRWAGMYFPDXBNJZSQVHLCKE";
@@ -108,6 +108,15 @@ public class Dni {
 			dni_correcto = (letra_calculada == dni.getLetra_dni());
 			
 		return dni_correcto;
+	}
+	
+	@Override
+	public int compareTo(Dni o) {
+		int resultado = 0;
+		
+			resultado = this.numero_dni - o.numero_dni;
+			
+		return resultado;
 	}
 	
 	

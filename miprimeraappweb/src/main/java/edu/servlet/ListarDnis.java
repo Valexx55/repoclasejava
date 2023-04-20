@@ -2,6 +2,7 @@ package edu.servlet;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -49,6 +50,7 @@ public class ListarDnis extends HttpServlet {
 		//LEER DEL FICHERO Y RECUPERAR LA LISTA DE DNIS
 		Path path = Path.of(getServletContext().getRealPath(Constantes.RUTA_FICHERO_DNIS));
 		List<Dni> lista_dnis = this.listadoService.obtenerListaDnis(path);
+		Collections.sort(lista_dnis);
 		
 		//DEVOLVERLA EN EL JSP
 		request.setAttribute("listadnis", lista_dnis);
