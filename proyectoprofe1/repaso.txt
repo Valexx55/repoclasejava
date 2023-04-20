@@ -116,3 +116,6 @@ para que tenga un significado especial "escapar"
  INVOCA AL MÍA
  
  PARSEAR - procesar un bloque de bytes/lineas/texto clasificando el contenido
+ 
+ nombre canónico paquete+clase nombre completo --> Identifica la clase de forma única
+ pej java.lang.String // edu.servletListadoDni
