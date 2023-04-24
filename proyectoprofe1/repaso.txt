@@ -119,3 +119,9 @@ para que tenga un significado especial "escapar"
  
  nombre canónico paquete+clase nombre completo --> Identifica la clase de forma única
  pej java.lang.String // edu.servletListadoDni
+ 
+ 
+ SERVLETCONTEXT - CONTEXTO : Un objeto que se crea al iniciar una app web
+ y que se destruye cuando la aplicación se para. Además este objeto, puedo
+ usarlo como almacen temporal. Puedo guardar cosas en él y usarlo mientras
+ la aplicación está viva.
