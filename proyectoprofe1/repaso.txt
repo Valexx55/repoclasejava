@@ -125,3 +125,12 @@ para que tenga un significado especial "escapar"
  y que se destruye cuando la aplicación se para. Además este objeto, puedo
  usarlo como almacen temporal. Puedo guardar cosas en él y usarlo mientras
  la aplicación está viva.
+ 
+ variable final: constante, declarad con mayúsculas y cuyo no varía (si intento modificarlo, no
+ me deja Java)
+ 
+ variables finales efectivas: no estás definidas con final, pero se les asigna sólo una vez
+ un valor. es como si fuera constantes en la práctica
+ 
+ Transacción (BD): Conjunto de operaciones lógicamente agrupadas, de tal manera que quiero controlar
+ que o se ejecutan todas con éxito o no se ejecuta ningún /*COMMIT, ROLLBACK, TRANSACTION

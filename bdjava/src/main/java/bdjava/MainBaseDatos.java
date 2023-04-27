@@ -10,9 +10,9 @@ import java.util.List;
 
 public class MainBaseDatos {
 	
-	private static final String CADENA_CONEXION = "jdbc:mysql://localhost:3306/bdimc?serverTimezone=UTC";
-	private static final String USUARIO = "root";
-	private static final String CONTRASENIA = "root";
+	public static final String CADENA_CONEXION = "jdbc:mysql://localhost:3306/bdimc?serverTimezone=UTC";
+	public static final String USUARIO = "root";
+	public static final String CONTRASENIA = "root";
 	
 	private static final String CONSULTA_SELECCION_TODOS_PACIENTES = "SELECT * FROM bdimc.pacientes;";
 	
