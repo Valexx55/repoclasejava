@@ -16,6 +16,7 @@ package proyecto1;
 public class Dni {
 
 	
+	
 	public final static String SECUENCIA_LETRAS = "TRWAGMYFPDXBNJZSQVHLCKE";
 	
 	public final static int NUM_MAX_DNI = 99999999;//Atributo definido a nivel de clase: común a todos los objetos
@@ -34,6 +35,10 @@ public class Dni {
 	//dniCaducado
 	
 	
+	static
+	{
+		System.out.println("HOLA ESTOY EN LA SECCIÓN STATIC");
+	}
 	
 	//constructor
 	public Dni() {

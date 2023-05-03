@@ -134,3 +134,7 @@ para que tenga un significado especial "escapar"
  
  Transacción (BD): Conjunto de operaciones lógicamente agrupadas, de tal manera que quiero controlar
  que o se ejecutan todas con éxito o no se ejecuta ningún /*COMMIT, ROLLBACK, TRANSACTION
+ 
+ 
+ SECCIÓN STATIC :La sección static es un conjunto de instrucciones opcional (bloque de código)
+que sirve para inicializar valores de la Clase : Ejemplo : POOL

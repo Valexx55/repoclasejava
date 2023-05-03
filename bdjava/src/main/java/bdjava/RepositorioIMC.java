@@ -18,9 +18,6 @@ public class RepositorioIMC {
 	//TODO VAMOS A HACER LAS OPERACIONES CON BASE DATOS DE:
 	
 	
-	//1 INSERTAR PACIENTE
-	//INSERT INTO `bdimc`.`pacientes` (`nombre`, `edad`) VALUES ('JUAN', '41');
-	
 	//multilinea TextBlock java 14 """ 
 	private static final String INSERTAR_PACIENTE="""
 			INSERT INTO `bdimc`.`pacientes` 
@@ -84,6 +81,8 @@ public class RepositorioIMC {
 		}
 		
 	}
+	
+	//1 INSERTAR PACIENTE
 	
 	public boolean insertarPaciente (Paciente paciente) throws SQLException
 	{
@@ -155,54 +154,33 @@ public class RepositorioIMC {
 		List<RegistroIMC> lista_registros = null;
 		
 		Connection connection = DriverManager.getConnection(MainBaseDatos.CADENA_CONEXION, MainBaseDatos.USUARIO,MainBaseDatos.CONTRASENIA);
-		//por defecto, la conexion es autocommit a trues
-		//connection.setAutoCommit(false);
-		// connection = DriverManager.getConnection(MainBaseDatos.CADENA_CONEXION, MainBaseDatos.USUARIO,MainBaseDatos.CONTRASENIA);
 		
 		try (connection;)//Try con recursos 9 --> variables final efectivo! sólo asignadas una vez
 		{
 			PreparedStatement preparedStatement = connection.prepareStatement(SELECCIONAR_TODOS_HISTORICO);
 			
 			ResultSet resultados = preparedStatement.executeQuery();
-			//TODO recorro el resultados y voy componiendo los objetos registros
-			int aux_id, aux_idpaciente;
-			float aux_peso, aux_altura, aux_imc_num;
-			java.sql.Date aux_fecha;
-			TipoIMC aux_tipo;
 			
 			RegistroIMC aux_registroIMC = null;
 			lista_registros = new ArrayList<RegistroIMC>();
 			while (resultados.next())
 			{
-				aux_id = resultados.getInt("id");
-				aux_fecha = resultados.getDate("fecha");
-				aux_peso = resultados.getFloat("peso");
-				aux_altura = resultados.getFloat("altura");
-				aux_imc_num = resultados.getFloat("imc_num");
-				aux_tipo = TipoIMC.valueOf(resultados.getString("imc_nom"));//de 1 string, obtengo el TIPO enum
-				aux_idpaciente = resultados.getInt("idpaciente");
-				
-				aux_registroIMC = new RegistroIMC(aux_id, aux_fecha, aux_imc_num, aux_altura, aux_peso, aux_tipo, new Paciente(aux_idpaciente, null, 0));
+				aux_registroIMC = componerRegistroIMCFromResultSet(resultados);
 				lista_registros.add(aux_registroIMC);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		
+		}	
 		
 		return lista_registros;
 	}
 	//4 CONSULTAR REGISTROS POR UN RANGO DE PESO
-	
 	
 	public List<RegistroIMC> leerRegistrosPorRangoPeso (float peso_min, float peso_max) throws Exception
 	{
 		List<RegistroIMC> lista_registros = null;
 		
 		Connection connection = DriverManager.getConnection(MainBaseDatos.CADENA_CONEXION, MainBaseDatos.USUARIO,MainBaseDatos.CONTRASENIA);
-		//por defecto, la conexion es autocommit a trues
-		//connection.setAutoCommit(false);
-		// connection = DriverManager.getConnection(MainBaseDatos.CADENA_CONEXION, MainBaseDatos.USUARIO,MainBaseDatos.CONTRASENIA);
 		
 		try (connection;)//Try con recursos 9 --> variables final efectivo! sólo asignadas una vez
 		{
@@ -212,44 +190,51 @@ public class RepositorioIMC {
 			preparedStatement.setFloat(2, peso_max);
 			
 			ResultSet resultados = preparedStatement.executeQuery();
-			//TODO recorro el resultados y voy componiendo los objetos registros
-			int aux_id, aux_idpaciente;
-			float aux_peso, aux_altura, aux_imc_num;
-			java.sql.Date aux_fecha;
-			TipoIMC aux_tipo;
 			
 			RegistroIMC aux_registroIMC = null;
 			lista_registros = new ArrayList<RegistroIMC>();
 			while (resultados.next())
 			{
-				aux_id = resultados.getInt("id");
-				aux_fecha = resultados.getDate("fecha");
-				aux_peso = resultados.getFloat("peso");
-				aux_altura = resultados.getFloat("altura");
-				aux_imc_num = resultados.getFloat("imc_num");
-				aux_tipo = TipoIMC.valueOf(resultados.getString("imc_nom"));//de 1 string, obtengo el TIPO enum
-				aux_idpaciente = resultados.getInt("idpaciente");
-				
-				aux_registroIMC = new RegistroIMC(aux_id, aux_fecha, aux_imc_num, aux_altura, aux_peso, aux_tipo, new Paciente(aux_idpaciente, null, 0));
+				aux_registroIMC = componerRegistroIMCFromResultSet(resultados);
 				lista_registros.add(aux_registroIMC);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		
 		return lista_registros;
 	}
 	
+	//DRY dont repeat yourself - hacer un función  - REFACTORIZAMOS
+	private RegistroIMC componerRegistroIMCFromResultSet (ResultSet registro) throws Exception
+	{
+		RegistroIMC registroIMC = null;
+		int aux_id, aux_idpaciente;
+		float aux_peso, aux_altura, aux_imc_num;
+		java.sql.Date aux_fecha;
+		TipoIMC aux_tipo;
+		
+			aux_id = registro.getInt("id");
+			aux_fecha = registro.getDate("fecha");
+			aux_peso = registro.getFloat("peso");
+			aux_altura = registro.getFloat("altura");
+			aux_imc_num = registro.getFloat("imc_num");
+			aux_tipo = TipoIMC.valueOf(registro.getString("imc_nom"));//de 1 string, obtengo el TIPO enum
+			aux_idpaciente = registro.getInt("idpaciente");
+		
+			registroIMC = new RegistroIMC(aux_id, aux_fecha, aux_imc_num, aux_altura, aux_peso, aux_tipo, new Paciente(aux_idpaciente, null, 0));
+		
+		return registroIMC;
+		
+	}
+	
+	//5 CONSULTAR LOS REGISTRO DE IMC DADO UN ID DE LA PACIENTE
 	
 	public List<RegistroIMC> leerRegistrosIMCPorPaciente (int idPaciente) throws Exception
 	{
 		List<RegistroIMC> lista_registros = null;
 		
 		Connection connection = DriverManager.getConnection(MainBaseDatos.CADENA_CONEXION, MainBaseDatos.USUARIO,MainBaseDatos.CONTRASENIA);
-		//por defecto, la conexion es autocommit a trues
-		//connection.setAutoCommit(false);
-		// connection = DriverManager.getConnection(MainBaseDatos.CADENA_CONEXION, MainBaseDatos.USUARIO,MainBaseDatos.CONTRASENIA);
 		
 		try (connection;)//Try con recursos 9 --> variables final efectivo! sólo asignadas una vez
 		{
@@ -257,25 +242,12 @@ public class RepositorioIMC {
 			preparedStatement.setInt(1, idPaciente);
 			
 			ResultSet resultados = preparedStatement.executeQuery();
-			//TODO recorro el resultados y voy componiendo los objetos registros
-			int aux_id, aux_idpaciente;
-			float aux_peso, aux_altura, aux_imc_num;
-			java.sql.Date aux_fecha;
-			TipoIMC aux_tipo;
 			
 			RegistroIMC aux_registroIMC = null;
 			lista_registros = new ArrayList<RegistroIMC>();
 			while (resultados.next())
 			{
-				aux_id = resultados.getInt("id");
-				aux_fecha = resultados.getDate("fecha");
-				aux_peso = resultados.getFloat("peso");
-				aux_altura = resultados.getFloat("altura");
-				aux_imc_num = resultados.getFloat("imc_num");
-				aux_tipo = TipoIMC.valueOf(resultados.getString("imc_nom"));//de 1 string, obtengo el TIPO enum
-				aux_idpaciente = resultados.getInt("idpaciente");
-				
-				aux_registroIMC = new RegistroIMC(aux_id, aux_fecha, aux_imc_num, aux_altura, aux_peso, aux_tipo, new Paciente(aux_idpaciente, null, 0));
+				aux_registroIMC = componerRegistroIMCFromResultSet(resultados);
 				lista_registros.add(aux_registroIMC);
 			}
 		} catch (Exception e) {
@@ -287,7 +259,7 @@ public class RepositorioIMC {
 	}
 	
 	
-	//5 CONSULTAR LOS REGISTRO DE IMC DADO UN ID DE LA PACIENTE
+	
 	
 	//COMPRAR (Usuario, Tarjeta, Fecha)
 	//{TRANSACCIÓN 
