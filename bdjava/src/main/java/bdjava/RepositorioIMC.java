@@ -3,8 +3,11 @@ package bdjava;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class RepositorioIMC {
 	
@@ -32,6 +35,8 @@ public class RepositorioIMC {
 			VALUES (?, ?, ?, ?, ?, ?);
 			""";
 	
+	private static final String SELECCIONAR_TODOS_HISTORICO = "SELECT * FROM bdimc.historico_imcs;";
+	
 	public static void main(String[] args) throws SQLException {
 		
 		Paciente paciente = new Paciente(1, "Vinicius", 20);
@@ -48,6 +53,15 @@ public class RepositorioIMC {
 		else {
 			System.out.println("Registro NO insertado :(");
 		}
+		
+		try {
+			List<RegistroIMC> lista_registros = repositorioIMC.leerTodosRegistrosIMC();
+			System.out.println("LISTA REGISTROS = " + lista_registros.toString());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public boolean insertarPaciente (Paciente paciente) throws SQLException
@@ -111,8 +125,54 @@ public class RepositorioIMC {
 		
 	}
 	
+	
+	
 	//3 CONSULTAR REGISTROS IMC TODOS //SELECT * FROM bdimc.historico_imcs;
+	
+	public List<RegistroIMC> leerTodosRegistrosIMC () throws Exception
+	{
+		List<RegistroIMC> lista_registros = null;
+		
+		Connection connection = DriverManager.getConnection(MainBaseDatos.CADENA_CONEXION, MainBaseDatos.USUARIO,MainBaseDatos.CONTRASENIA);
+		//por defecto, la conexion es autocommit a trues
+		//connection.setAutoCommit(false);
+		// connection = DriverManager.getConnection(MainBaseDatos.CADENA_CONEXION, MainBaseDatos.USUARIO,MainBaseDatos.CONTRASENIA);
+		
+		try (connection;)//Try con recursos 9 --> variables final efectivo! sólo asignadas una vez
+		{
+			PreparedStatement preparedStatement = connection.prepareStatement(SELECCIONAR_TODOS_HISTORICO);
+			
+			ResultSet resultados = preparedStatement.executeQuery();
+			//TODO recorro el resultados y voy componiendo los objetos registros
+			int aux_id, aux_idpaciente;
+			float aux_peso, aux_altura, aux_imc_num;
+			java.sql.Date aux_fecha;
+			TipoIMC aux_tipo;
+			
+			RegistroIMC aux_registroIMC = null;
+			lista_registros = new ArrayList<RegistroIMC>();
+			while (resultados.next())
+			{
+				aux_id = resultados.getInt("id");
+				aux_fecha = resultados.getDate("fecha");
+				aux_peso = resultados.getFloat("peso");
+				aux_altura = resultados.getFloat("altura");
+				aux_imc_num = resultados.getFloat("imc_num");
+				aux_tipo = TipoIMC.valueOf(resultados.getString("imc_nom"));//de 1 string, obtengo el TIPO enum
+				aux_idpaciente = resultados.getInt("idpaciente");
+				
+				aux_registroIMC = new RegistroIMC(aux_id, aux_fecha, aux_imc_num, aux_altura, aux_peso, aux_tipo, new Paciente(aux_idpaciente, null, 0));
+				lista_registros.add(aux_registroIMC);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return lista_registros;
+	}
 	//4 CONSULTAR REGISTROS POR UN RANGO DE PESO
+	
 	//5 CONSULTAR LOS REGISTRO DE IMC DADO UN ID DE LA PACIENTE
 	
 	//COMPRAR (Usuario, Tarjeta, Fecha)

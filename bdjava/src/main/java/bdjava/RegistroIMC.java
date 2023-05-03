@@ -69,5 +69,12 @@ public class RegistroIMC {
 	public RegistroIMC() {
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "RegistroIMC [id=" + id + ", fecha_registro=" + fecha_registro + ", imc_num=" + imc_num + ", altura="
+				+ altura + ", peso=" + peso + ", tipoIMC=" + tipoIMC + ", paciente=" + paciente + "]\n";
+	}
+	
+	
 
 }
