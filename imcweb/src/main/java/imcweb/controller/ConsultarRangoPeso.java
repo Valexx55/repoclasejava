@@ -32,24 +32,32 @@ public class ConsultarRangoPeso extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//AQUÍ, GESTIONO LA PETICIÓN DE CONSULTAR
-		//1 extrear los parámetros de la petición: peso max y peso min
-		String spesomin = request.getParameter("pesomin");
-		String spesomax = request.getParameter("pesomax");
-		float pesomin = Float.parseFloat(spesomin);
-		float pesomax = Float.parseFloat(spesomax);
-		//TODO validar la entrada
-		System.out.println("PESO MIN = " + pesomin + "PESO MAX = " + pesomax);
-		//2 invoco al servicio, que es la clase que hace la tarea
-		IMCWebService imcWebService = new IMCWebServiceImpl();
+		
 		try {
+			
+			// TODO Auto-generated method stub
+			//AQUÍ, GESTIONO LA PETICIÓN DE CONSULTAR
+			//1 extrear los parámetros de la petición: peso max y peso min
+			String spesomin = request.getParameter("pesomin");
+			String spesomax = request.getParameter("pesomax");
+			float pesomin = Float.parseFloat(spesomin);
+			float pesomax = Float.parseFloat(spesomax);
+			//TODO validar la entrada
+			System.out.println("PESO MIN = " + pesomin + "PESO MAX = " + pesomax);
+			//2 invoco al servicio, que es la clase que hace la tarea
+			IMCWebService imcWebService = new IMCWebServiceImpl();
 			List<RegistroIMC> lRegistroIMCs = imcWebService.conusltarRegistrosIMCPorRangoPeso(pesomin, pesomax);
+			request.setAttribute("listareg", lRegistroIMCs);
+			System.out.println(lRegistroIMCs);
+			request.getRequestDispatcher("listadoregistrospeso.jsp").forward(request, response);
+			
 			//TODO //3 le mando el JSP como respuesta
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			// GENERAR LA RESPUESTA DE ERRROR
 			e.printStackTrace();
+			//request.getRequestDispatcher("error.jsp").forward(request, response);
+			response.sendRedirect("error.jsp");
 		}
 	}
 

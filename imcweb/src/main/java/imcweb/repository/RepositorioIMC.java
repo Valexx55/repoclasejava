@@ -159,7 +159,8 @@ public class RepositorioIMC {
 				lista_registros.add(aux_registroIMC);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace();//CAPTURO
+			throw e;//PROGAGO
 		}
 		
 		return lista_registros;
