@@ -1,4 +1,4 @@
-package imcweb.service;
+package imcweb.model;
 
 //es el tipo de dato perfecto para usar cuando un valor, está acotado en un rango limitado de valores
 //vamos a definir un método que traduzca un valor numérico a uno nominal TipoIMC

@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import imcweb.model.TipoIMC;
 import imcweb.service.IMC;
 import imcweb.service.InfoSalidaImc;
 import imcweb.service.Paciente;
-import imcweb.service.Salida;
-import imcweb.service.TipoIMC;
+
 
 //import edu.java.val.salud.Paciente;
 
