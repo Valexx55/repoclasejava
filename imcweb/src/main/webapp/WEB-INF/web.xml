@@ -5,6 +5,7 @@
 	version="4.0">
 	<display-name>imcweb</display-name>
 	<welcome-file-list>
+		<welcome-file>busquedarangopeso.html</welcome-file>
 		<welcome-file>formularioimc.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
