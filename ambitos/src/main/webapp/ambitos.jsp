@@ -7,7 +7,7 @@
 <title>SALIDA</title>
 </head>
 <body>
-<!-- se puedo omitir el nombre del "saco" o ámbito y ${} expression lenguage
+<!-- se puedo omitir el nombre del "saco" o ámbito y Expression lenguage
 buscaría en la request, en la sesion y en el aplication/contexto -->
 NUMVECES AMBITO/SCOPE REQUEST  ${requestScope.numveces} <br>
 NUMVECES AMBITO/SCOPE SESSION  ${sessionScope.numvecessesion} <br>
