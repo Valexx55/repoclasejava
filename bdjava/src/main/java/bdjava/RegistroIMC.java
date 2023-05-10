@@ -72,8 +72,10 @@ public class RegistroIMC {
 	@Override
 	public String toString() {
 		return "RegistroIMC [id=" + id + ", fecha_registro=" + fecha_registro + ", imc_num=" + imc_num + ", altura="
-				+ altura + ", peso=" + peso + ", tipoIMC=" + tipoIMC + ", paciente=" + paciente + "]\n";
+				+ altura + ", peso=" + peso + ", tipoIMC=" + tipoIMC + "]\n";
 	}
+	
+	
 	
 	
 

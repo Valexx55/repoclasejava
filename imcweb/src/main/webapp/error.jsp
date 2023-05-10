@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+${mensajeError}
 ERRRRORR.....
 <p><a href="./">Volver a la página de inicio</a></p>
 </body>

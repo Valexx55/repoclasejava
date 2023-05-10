@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
@@ -72,6 +73,9 @@ public class FiltroConsultaRangoPeso1 extends HttpFilter implements Filter {
 				System.out.println("Usuario autenticado");
 				chain.doFilter(request, response);// PASA --> O BIEN VA A OTRO FILTRO O BIEN VA AL SERVLET
 			}else {//5 SI NO, le mando a Parla
+				
+				HttpSession sesion =  peticionHttp.getSession();
+				sesion.setAttribute("mensajeError", "Usuario NO autenticado credenciales incorrectas");
 				log.error("Usuario NO autenticado credenciales incorrectas");
 				//log.error(autorizacion, null)
 				System.out.println("Usuario NO autenticado credenciales incorrectas");
@@ -81,6 +85,8 @@ public class FiltroConsultaRangoPeso1 extends HttpFilter implements Filter {
 			}	
 		} else {
 			
+			HttpSession sesion =  peticionHttp.getSession();
+			sesion.setAttribute("mensajeError", "Usuario NO autenticado SIN credenciales");
 			log.error("Usuario NO autenticado SIN credenciales ");
 			System.out.println("Usuario NO autenticado SIN credenciales ");
 			HttpServletResponse responseHttp = (HttpServletResponse)response;

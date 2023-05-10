@@ -16,6 +16,8 @@ public class MainBaseDatos {
 	
 	private static final String CONSULTA_SELECCION_TODOS_PACIENTES = "SELECT * FROM bdimc.pacientes;";
 	
+	public static final String CONSULTA_SELECCION_REGISTRO_POR_ID = "SELECT * FROM bdimc.historico_imcs WHERE idpaciente=?;";
+	
 	
 	//Paciente paciente = listaPacientes.stream().min((p1, p2) -> Integer.compare(p1.getEdad(), p2.getEdad())).get();
 	
