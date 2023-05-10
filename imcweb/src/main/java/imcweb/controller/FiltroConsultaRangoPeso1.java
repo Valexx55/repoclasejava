@@ -16,13 +16,16 @@ import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 /**
  * Servlet Filter implementation class FiltroConsultaRangoPeso1
  */
 @WebFilter("/ConsultarRangoPeso")
 public class FiltroConsultaRangoPeso1 extends HttpFilter implements Filter {
 
-	
+	//uso/cargo la configuracion del properties
+	private static Logger log = Logger.getLogger("mylog");
 	
 	private static final String NOMBRE_USUARIO = "canelo";
 	private static final String PASSWORD_USUARIO = "secreto";
@@ -69,6 +72,8 @@ public class FiltroConsultaRangoPeso1 extends HttpFilter implements Filter {
 				System.out.println("Usuario autenticado");
 				chain.doFilter(request, response);// PASA --> O BIEN VA A OTRO FILTRO O BIEN VA AL SERVLET
 			}else {//5 SI NO, le mando a Parla
+				log.error("Usuario NO autenticado credenciales incorrectas");
+				//log.error(autorizacion, null)
 				System.out.println("Usuario NO autenticado credenciales incorrectas");
 				HttpServletResponse responseHttp = (HttpServletResponse)response;
 				responseHttp.sendRedirect("error.jsp");
@@ -76,6 +81,7 @@ public class FiltroConsultaRangoPeso1 extends HttpFilter implements Filter {
 			}	
 		} else {
 			
+			log.error("Usuario NO autenticado SIN credenciales ");
 			System.out.println("Usuario NO autenticado SIN credenciales ");
 			HttpServletResponse responseHttp = (HttpServletResponse)response;
 			responseHttp.sendRedirect("error.jsp");
