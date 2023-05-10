@@ -22,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebFilter("/ConsultarRangoPeso")
 public class FiltroConsultaRangoPeso1 extends HttpFilter implements Filter {
 
+	
+	
 	private static final String NOMBRE_USUARIO = "canelo";
 	private static final String PASSWORD_USUARIO = "secreto";
 	/**
@@ -73,6 +75,7 @@ public class FiltroConsultaRangoPeso1 extends HttpFilter implements Filter {
 				
 			}	
 		} else {
+			
 			System.out.println("Usuario NO autenticado SIN credenciales ");
 			HttpServletResponse responseHttp = (HttpServletResponse)response;
 			responseHttp.sendRedirect("error.jsp");

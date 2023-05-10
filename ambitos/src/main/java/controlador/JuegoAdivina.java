@@ -35,6 +35,7 @@ public class JuegoAdivina extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session =  request.getSession(false);//
 		
+		//CORTOCIR
 		if ((session!=null)&&(session.getAttribute("num_secreto")!=null)) //caso especial, tiene sesión, pero ha perdido
 		{
 			String mensaje_respuesta = "";

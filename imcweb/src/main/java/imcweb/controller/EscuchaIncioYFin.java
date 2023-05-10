@@ -13,6 +13,8 @@ import javax.servlet.annotation.WebListener;
  */
 @WebListener
 public class EscuchaIncioYFin implements ServletContextListener {
+	
+	//private static Logger log = Logger.getLogger("mylog");
 
     /**
      * Default constructor. 
