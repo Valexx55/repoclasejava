@@ -1,5 +1,7 @@
 package bdjava;
 
+import colecciones.equals.Dni;
+
 public class Paciente {
 	
 	private int id;
@@ -44,6 +46,30 @@ public class Paciente {
 	@Override
 	public String toString() {
 		return "Paciente [id=" + id + ", nombre=" + nombre + ", edad=" + edad + "]";
+	}
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		boolean iguales = false;
+		
+			//quién comparo - this con obj
+			if (obj!=null)
+			{
+				if (obj instanceof Paciente paciente)//si obj es un DNI, se hace el casting a dni2
+				{
+					 iguales = this.id == paciente.id;
+					
+				}
+			}
+		
+		return iguales;
+	}
+	
+	@Override
+	public int hashCode() {
+		
+		return this.id;
 	}
 
 

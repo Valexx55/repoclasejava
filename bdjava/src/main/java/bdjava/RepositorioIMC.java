@@ -37,10 +37,11 @@ public class RepositorioIMC {
 	private static final String SELECCIONAR_HISTORICO_RANGO_PESO = "SELECT * FROM bdimc.historico_imcs WHERE peso BETWEEN ? and ?;";
 	
 	private static final String SELECCIONAR_HISTORICO_POR_ID_PACIENTE = "SELECT * FROM bdimc.historico_imcs WHERE idpaciente = ?;";
+	private static final String SELECCIONAR_TODOS_PACIENTES = "SELECT * FROM bdimc.pacientes;";
 	
 	public static void main(String[] args) throws SQLException {
 		
-		Paciente paciente = new Paciente(1, "Vinicius", 20);
+		Paciente paciente = new Paciente(3, "RONALDO", 30);
 		RepositorioIMC repositorioIMC = new RepositorioIMC();
 		/*if (repositorioIMC.insertarPaciente(paciente))
 			System.out.println("Registro insertado correctamente :)");
@@ -48,37 +49,37 @@ public class RepositorioIMC {
 			System.out.println("Registro NO insertado :(");
 		}*/
 		
-		RegistroIMC registroIMC = new RegistroIMC(0, new Date(), 20, 2, 70, TipoIMC.DELGADO, paciente);
+		RegistroIMC registroIMC = new RegistroIMC(0, new Date(), 25, 1.7f, 79, TipoIMC.DELGADO, paciente);
 		if (repositorioIMC.insertarRegistro(registroIMC))
 			System.out.println("Registro insertado correctamente :)");
 		else {
 			System.out.println("Registro NO insertado :(");
 		}
 		
-		try {
+		/*try {
 			List<RegistroIMC> lista_registros = repositorioIMC.leerTodosRegistrosIMC();
 			System.out.println("LISTA REGISTROS = " + lista_registros.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
-		try {
+		/*try {
 			List<RegistroIMC> lista_registros = repositorioIMC.leerRegistrosIMCPorPaciente(5);
 			System.out.println("LISTA REGISTROS POR USUARIO = " + lista_registros.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 
 		
-		try {
+		/*try {
 			List<RegistroIMC> lista_registros_rango = repositorioIMC.leerRegistrosPorRangoPeso(40, 50);
 			System.out.println("LISTA REGISTROS POR PESO = " + lista_registros_rango.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 	}
 	
@@ -259,7 +260,44 @@ public class RepositorioIMC {
 	}
 	
 	
-	
+	public List<Paciente> leerTodosLosPacientes () throws Exception
+	{
+		List<Paciente> listaPacientes = null;
+		
+		Connection connection = DriverManager.getConnection(MainBaseDatos.CADENA_CONEXION, MainBaseDatos.USUARIO,MainBaseDatos.CONTRASENIA);
+		//por defecto, la conexion es autocommit a trues
+		//connection.setAutoCommit(false);
+		// connection = DriverManager.getConnection(MainBaseDatos.CADENA_CONEXION, MainBaseDatos.USUARIO,MainBaseDatos.CONTRASENIA);
+		
+		try (connection;)//Try con recursos 9 --> variables final efectivo! sólo asignadas una vez
+		{
+			PreparedStatement preparedStatement = connection.prepareStatement(SELECCIONAR_TODOS_PACIENTES);
+			
+			ResultSet resultados = preparedStatement.executeQuery();
+			//TODO recorro el resultados y voy componiendo los objetos registros
+			int auxid, auxEdad;
+			String auxNombre = "";
+			java.sql.Date aux_fecha;
+			TipoIMC aux_tipo;
+			
+			Paciente paciente = null;
+			listaPacientes = new ArrayList<Paciente>();
+			while (resultados.next())
+			{
+				auxid = resultados.getInt("id");
+				auxNombre = resultados.getString("nombre");
+				auxEdad = resultados.getInt("edad");
+				
+				paciente = new Paciente(auxid, auxNombre, auxEdad);
+				listaPacientes.add(paciente);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return listaPacientes;
+	}
 	
 	//COMPRAR (Usuario, Tarjeta, Fecha)
 	//{TRANSACCIÓN 
