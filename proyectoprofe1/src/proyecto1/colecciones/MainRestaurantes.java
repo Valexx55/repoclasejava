@@ -39,7 +39,22 @@ public class MainRestaurantes {
 		//proyecto1.colecciones.Restaurante@5ca881b5, 
 		//proyecto1.colecciones.Restaurante@24d46ca6]
 		
+		Collections.sort(listaRestaurantes, 
+				(rest1, rest2) ->
+					{
+						return rest1.getPrecioMedio()-rest2.getPrecioMedio();	
+					});//USANDO EL ORDEN TOTAL
+				//public int compare(Restaurante r1, Restaurante r2)
 		
+		System.out.println("IMPRIENDO CON FOREACH");
+		listaRestaurantes.forEach((restaurante)-> {System.out.println(restaurante);});
+		List<Restaurante> listaBaratos = listaRestaurantes.stream().filter((restaurate) -> restaurate.getPrecioMedio()<=20).toList();
+		System.out.println("LISTA DE RESTAURATENS MENOS DE 20 euros");
+		System.out.println(listaBaratos);
+		
+		
+		long numrestaurantesbaratos = listaRestaurantes.stream().filter((restaurate) -> restaurate.getPrecioMedio()<=20).count();
+		System.out.println(numrestaurantesbaratos);
 	}
 
 }
